@@ -57,9 +57,19 @@
                                     </cellValueFactory>
                                    </TableColumn>
 
-                                       <TableColumn prefWidth="350.0" text="Description" />
-                                    <TableColumn prefWidth="75.0" text="Status" />
-                                </columns>
+                                       <TableColumn prefWidth="350.0" text="Description" >
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="description" />
+                                        </cellValueFactory>
+                                       </TableColumn>
+
+                                    <TableColumn prefWidth="75.0" text="Status" >
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="status" />
+                                        </cellValueFactory>
+                                </TableColumn>
+
+                              </columns>
                               </TableView>
                               <Button layoutX="26.0" layoutY="77.0" mnemonicParsing="false" text="Save List" />
                               <CheckBox fx:id="incompleteCheckbox" layoutY="122.0" mnemonicParsing="false" selected="true" text="Show Incomplete" />

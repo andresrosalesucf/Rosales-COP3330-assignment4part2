@@ -18,13 +18,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
-    //List of all ToDo Lists, from here all lists get retrieved for display
-    List<ToDoList> MasterList = new LinkedList<>();
 
-    //initialize a HashMap called Archive that matches filenames, and list names.
-    //this will be to load lists in future.
-    //gets saved to a .txt file whenever a save occurs
-    HashMap<String, String> Archive = new HashMap<>();
+
 
     @FXML private TableView<ToDo> tableView;
     @FXML private CheckBox completedCheckbox;
