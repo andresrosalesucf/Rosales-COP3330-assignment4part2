@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App{
+    main()
+    start()
+}
+class AppController{
+    addList()
+    removeList()
+    saveList()
+    saveAllLists()
+    loadList()
+    editTitle()
+
+}
+class ToDo{
+    +String dueDate
+    +String description
+    +String status
+    +setDueDate
+    +setDescription
+    +setStatus
+    +getDueDate
+    +getDescription
+    +getStatus
+}
+class ToDoList{
+    +String ListName
+    +String fileName
+    +List ToDo
+}
+
+class csvHandler {
+    + readCSV()
+    + writeCSV()
+    + createFile()
+}
+App -- AppController
+AppController -- csvHandler
+AppController - ToDo
+ToDo <-ToDoList
+@enduml
