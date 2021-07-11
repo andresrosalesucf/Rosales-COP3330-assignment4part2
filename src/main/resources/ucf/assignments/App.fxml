@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,17 +13,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.5, 0.5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.AppController">
+<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.AppController">
    <items>
       <VBox alignment="CENTER" maxWidth="-Infinity" prefWidth="100.0">
          <children>
-            <TextField maxWidth="200.0" prefWidth="50.0" text="List Name" />
-            <Button mnemonicParsing="false" text="Add To-Do List">
+            <TextField fx:id="fileName" maxWidth="200.0" prefWidth="50.0" text="Save List As..." />
+            <Button mnemonicParsing="false" text="Save List" onAction="#saveListButton">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Save All Lists">
+            <Button mnemonicParsing="false" text="Load List">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin>
@@ -42,14 +40,12 @@
       </VBox>
       <ScrollPane>
          <content>
-            <Accordion>
-              <panes>
-                <TitledPane animated="false" text="untitled 1">
+                <TitledPane animated="false" text="To Do List">
                      <content>
                         <Pane>
                            <children>
                               <Button layoutX="9.0" layoutY="39.0" mnemonicParsing="false" text="Remove To-Do" />
-                              <TableView fx:id="tableView" editable="true" layoutX="120.0">
+                              <TableView fx:id="tableView" editable="true" layoutX="136.0" layoutY="15.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="Due Date">
                                     <cellValueFactory>
@@ -57,13 +53,13 @@
                                     </cellValueFactory>
                                    </TableColumn>
 
-                                       <TableColumn prefWidth="350.0" text="Description" >
+                                       <TableColumn fx:id="description" prefWidth="350.0" text="Description">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="description" />
                                         </cellValueFactory>
                                        </TableColumn>
 
-                                    <TableColumn prefWidth="75.0" text="Status" >
+                                    <TableColumn prefWidth="75.0" text="Status">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="status" />
                                         </cellValueFactory>
@@ -71,32 +67,16 @@
 
                               </columns>
                               </TableView>
-                              <Button layoutX="26.0" layoutY="77.0" mnemonicParsing="false" text="Save List" />
                               <CheckBox fx:id="incompleteCheckbox" layoutY="122.0" mnemonicParsing="false" selected="true" text="Show Incomplete" />
                               <CheckBox fx:id="completedCheckbox" layoutX="1.0" layoutY="153.0" mnemonicParsing="false" selected="true" text="Show Completed" />
-                              <Button layoutX="26.0" layoutY="1.0" mnemonicParsing="false" text="Edit Title" />
                               <Button layoutX="24.0" layoutY="312.0" mnemonicParsing="false" text="Add To-Do" />
                               <TextField layoutX="6.0" layoutY="240.0" prefHeight="25.0" prefWidth="110.0" text="Due DD-MM-YYYY" />
-                              <TextField layoutX="2.0" layoutY="272.0" prefHeight="25.0" prefWidth="119.0" text="Enter Description" />
+                              <TextField layoutX="2.0" layoutY="272.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="119.0" text="Enter Description" />
                            </children>
                         </Pane>
                      </content>
                   </TitledPane>
-              </panes>
-            </Accordion>
          </content>
       </ScrollPane>
-      <TitledPane maxWidth="-Infinity" prefWidth="250.0">
-         <content>
-            <ScrollPane fitToHeight="true" fitToWidth="true">
-               <content>
-                  <ListView />
-               </content>
-            </ScrollPane>
-         </content>
-         <graphic>
-            <Button mnemonicParsing="false" text="Load List" />
-         </graphic>
-      </TitledPane>
    </items>
 </SplitPane>

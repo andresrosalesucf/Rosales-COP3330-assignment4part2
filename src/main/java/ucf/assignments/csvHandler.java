@@ -4,13 +4,19 @@
  */
 package ucf.assignments;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class csvHandler {
 
 
-    public ToDoList readCSVList(String filename){
-        ToDoList retrievedToDoList = new ToDoList();
+    public List readCSVList(String filename){
+        LinkedList<ToDo> retrievedToDoList =  new LinkedList<>();
         //try and open file
         //if not existent return empty List
         //use csv parser to create todos List until empty String
@@ -19,18 +25,35 @@ public class csvHandler {
         return retrievedToDoList;
     }
 
-    public void writeCSV(ToDoList SavethisList, String fileName){
+    public static void writeCSV(ObservableList<ToDo> SavethisList, String fileName){
 
-        //check if file exists
-        //if does, ask user if they would like to overwrite
-        //if file doesnt exist or if yes, create file
-        //save list Name first line
-        //every line after that loops through list of ToDos, param
+        createFile(fileName);
+        try (FileWriter listWriter = new FileWriter(fileName + ".csv")) {
+           //loop through todolist and append to file //listWriter.write(String)
+            for(int i=0; i<SavethisList.size(); i++){
+                listWriter.write( SavethisList.get(i).dueDateProperty().get());
+                listWriter.write(", ");
+                listWriter.write( SavethisList.get(i).descriptionProperty().get());
+                listWriter.write(", ");
+                listWriter.write( SavethisList.get(i).statusProperty().get());
+                listWriter.write("\n");
+            }
+        }catch (IOException e) {
+            System.out.println("An error occurred writing to file.");
+            e.printStackTrace();
+        }
     }
-    public void createFile(String fileName){
-        //try and create new file
-        //if file success print file created
-        //if not print file already exists
-        //catch ioexception print error
+    public static void createFile(String fileName){
+        try {
+            File myObj = new File(fileName + ".csv");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred creating file.");
+            e.printStackTrace();
+        }
     }
 }
