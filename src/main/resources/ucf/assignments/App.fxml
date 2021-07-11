@@ -18,17 +18,22 @@
       <VBox alignment="CENTER" maxWidth="-Infinity" prefWidth="100.0">
          <children>
             <TextField fx:id="fileName" maxWidth="200.0" prefWidth="50.0" text="Save List As..." />
-            <Button mnemonicParsing="false" text="Save List" onAction="#saveListButton">
+            <Button mnemonicParsing="false" onAction="#saveListButton" text="Save List">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Load List">
+            <TextField fx:id="loadList" text="Filename">
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#loadListButton" text="Load List">
+               <VBox.margin>
+                  <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Remove List">
+            <Button onAction="#clearListButton" mnemonicParsing="false" text="Clear List">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
@@ -44,22 +49,22 @@
                      <content>
                         <Pane>
                            <children>
-                              <Button layoutX="9.0" layoutY="39.0" mnemonicParsing="false" text="Remove To-Do" />
+                              <Button layoutX="9.0" layoutY="14.0" mnemonicParsing="false" text="Remove To-Do" />
                               <TableView fx:id="tableView" editable="true" layoutX="136.0" layoutY="15.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Due Date">
+                                  <TableColumn fx:id="dueDateColumn" prefWidth="75.0" text="Due Date">
                                     <cellValueFactory>
                                       <PropertyValueFactory property="dueDate" />
                                     </cellValueFactory>
                                    </TableColumn>
 
-                                       <TableColumn fx:id="description" prefWidth="350.0" text="Description">
+                                       <TableColumn fx:id="descriptionColumn" prefWidth="350.0" text="Description">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="description" />
                                         </cellValueFactory>
                                        </TableColumn>
 
-                                    <TableColumn prefWidth="75.0" text="Status">
+                                    <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="status" />
                                         </cellValueFactory>
@@ -69,9 +74,9 @@
                               </TableView>
                               <CheckBox fx:id="incompleteCheckbox" layoutY="122.0" mnemonicParsing="false" selected="true" text="Show Incomplete" />
                               <CheckBox fx:id="completedCheckbox" layoutX="1.0" layoutY="153.0" mnemonicParsing="false" selected="true" text="Show Completed" />
-                              <Button layoutX="24.0" layoutY="312.0" mnemonicParsing="false" text="Add To-Do" />
-                              <TextField layoutX="6.0" layoutY="240.0" prefHeight="25.0" prefWidth="110.0" text="Due DD-MM-YYYY" />
-                              <TextField layoutX="2.0" layoutY="272.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="119.0" text="Enter Description" />
+                              <Button layoutX="24.0" layoutY="312.0" mnemonicParsing="false" onAction="#addToDoButton" text="Add To-Do" />
+                              <TextField fx:id="duedateTextField" layoutX="6.0" layoutY="240.0" prefHeight="25.0" prefWidth="110.0" text="Due DD-MM-YYYY" />
+                              <TextField fx:id="descriptionTextField" layoutX="2.0" layoutY="272.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="119.0" text="Enter Description" />
                            </children>
                         </Pane>
                      </content>
