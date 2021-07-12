@@ -130,7 +130,7 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<ToDo> todos = tableView.getItems();
-
+        //When double clicking a description in table, makes it editable
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ToDo, String>>() {
@@ -142,6 +142,7 @@ public class AppController implements Initializable {
                     }
                 }
         );
+        //When double clicking a due date in table, makes it editable
         dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         /*textField.setOnAction(event -> {
                     commitEdit(textField.getText());
@@ -163,6 +164,7 @@ public class AppController implements Initializable {
                     }
                 }
         );
+        //When double clicking a status in table, makes it editable
         statusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         statusColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ToDo, String>>() {
@@ -174,12 +176,7 @@ public class AppController implements Initializable {
                     }
                 }
         );
-        duedateTextField.setText("2021-12-13");
-        descriptionTextField.setText("What what in the butt?");
-        for(int i=0; i<100; i++){
 
-            addToDo();
-        }
     }
 
 }

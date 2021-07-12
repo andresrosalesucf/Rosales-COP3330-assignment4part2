@@ -6,29 +6,25 @@ class App{
     start()
 }
 class AppController{
-    addList()
-    removeList()
+    addToDo()
+    removeToDo()
     saveList()
-    saveAllLists()
     loadList()
-    editTitle()
+    clearList()
+    initialize()
 
 }
 class ToDo{
-    +String dueDate
-    +String description
-    +String status
-    +setDueDate
-    +setDescription
-    +setStatus
-    +getDueDate
-    +getDescription
-    +getStatus
-}
-class ToDoList{
-    +String ListName
-    +String fileName
-    +List ToDo
+    + String dueDate
+    + String description
+    + String status
+    + setDueDate
+    + setDescription
+    + setStatus
+    + getDueDate
+    + getDescription
+    + getStatus
+    + isValidformat()
 }
 
 class csvHandler {
@@ -39,5 +35,4 @@ class csvHandler {
 App -- AppController
 AppController -- csvHandler
 AppController - ToDo
-ToDo <-ToDoList
 @enduml
