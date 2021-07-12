@@ -3,15 +3,32 @@
  *  *  Copyright 2021 Andres Rosales
  */
 
+import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import ucf.assignments.AppController;
 import ucf.assignments.App;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class AppControllerTest {
+import static org.junit.jupiter.api.Assertions.*;
 
+public class AppControllerTest {
+    @FXML private TextField descriptionTextField;
+    @FXML private TextField duedateTextField;
+    @FXML private TableView tableView;
+    @Test
+    public void add100Items(){
+        AppController App = new AppController();
+
+        duedateTextField.setText("2021-12-13");
+        descriptionTextField.setText("What what in the butt?");
+        for(int i=0; i<100; i++){
+            App.addToDo();
+        }
+        assert(tableView.getItems().size() == 100);
+    }
     @Test
     public void testAddToDoList(){
         //instantiate 2 lists, one with target item missing

@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -33,7 +32,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Button>
-            <Button onAction="#clearListButton" mnemonicParsing="false" text="Clear List">
+            <Button mnemonicParsing="false" onAction="#clearListButton" text="Clear List">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
@@ -43,44 +42,40 @@
             <Insets top="5.0" />
          </padding>
       </VBox>
-      <ScrollPane>
+      <ScrollPane fitToWidth="true">
          <content>
-                <TitledPane animated="false" text="To Do List">
-                     <content>
-                        <Pane>
-                           <children>
-                              <Button layoutX="9.0" layoutY="14.0" mnemonicParsing="false" text="Remove To-Do" />
-                              <TableView fx:id="tableView" editable="true" layoutX="136.0" layoutY="15.0">
-                                <columns>
-                                  <TableColumn fx:id="dueDateColumn" prefWidth="75.0" text="Due Date">
-                                    <cellValueFactory>
-                                      <PropertyValueFactory property="dueDate" />
-                                    </cellValueFactory>
-                                   </TableColumn>
+                  <Pane>
+                     <children>
+                        <Button layoutX="9.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeToDoButton" text="Remove Selected" />
+                        <TableView fx:id="tableView" editable="true" layoutX="136.0" layoutY="15.0" prefWidth="800.0">
+                          <columns>
+                            <TableColumn fx:id="dueDateColumn" prefWidth="75.0" text="Due Date">
+                              <cellValueFactory>
+                                <PropertyValueFactory property="dueDate" />
+                              </cellValueFactory>
+                             </TableColumn>
 
-                                       <TableColumn fx:id="descriptionColumn" prefWidth="350.0" text="Description">
-                                        <cellValueFactory>
-                                            <PropertyValueFactory property="description" />
-                                        </cellValueFactory>
-                                       </TableColumn>
+                                       <TableColumn fx:id="descriptionColumn" prefWidth="500.0" text="Description">
+                                  <cellValueFactory>
+                                      <PropertyValueFactory property="description" />
+                                  </cellValueFactory>
+                                 </TableColumn>
 
-                                    <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status">
-                                        <cellValueFactory>
-                                            <PropertyValueFactory property="status" />
-                                        </cellValueFactory>
-                                </TableColumn>
+                                    <TableColumn fx:id="statusColumn" maxWidth="100.0" prefWidth="50.0" text="Status">
+                                  <cellValueFactory>
+                                      <PropertyValueFactory property="status" />
+                                  </cellValueFactory>
+                          </TableColumn>
 
                               </columns>
-                              </TableView>
-                              <CheckBox fx:id="incompleteCheckbox" layoutY="122.0" mnemonicParsing="false" selected="true" text="Show Incomplete" />
-                              <CheckBox fx:id="completedCheckbox" layoutX="1.0" layoutY="153.0" mnemonicParsing="false" selected="true" text="Show Completed" />
-                              <Button layoutX="24.0" layoutY="312.0" mnemonicParsing="false" onAction="#addToDoButton" text="Add To-Do" />
-                              <TextField fx:id="duedateTextField" layoutX="6.0" layoutY="240.0" prefHeight="25.0" prefWidth="110.0" text="Due DD-MM-YYYY" />
-                              <TextField fx:id="descriptionTextField" layoutX="2.0" layoutY="272.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="119.0" text="Enter Description" />
-                           </children>
-                        </Pane>
-                     </content>
-                  </TitledPane>
+                        </TableView>
+                        <CheckBox fx:id="incompleteCheckbox" layoutY="122.0" mnemonicParsing="false" selected="true" text="Show Incomplete" />
+                        <CheckBox fx:id="completedCheckbox" layoutX="1.0" layoutY="153.0" mnemonicParsing="false" selected="true" text="Show Completed" />
+                        <Button layoutX="24.0" layoutY="312.0" mnemonicParsing="false" onAction="#addToDoButton" text="Add To-Do" />
+                        <TextField fx:id="duedateTextField" layoutX="6.0" layoutY="240.0" prefHeight="25.0" prefWidth="110.0" text="Due DD-MM-YYYY" />
+                        <TextField fx:id="descriptionTextField" layoutX="2.0" layoutY="272.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="119.0" text="Enter Description" />
+                     </children>
+                  </Pane>
          </content>
       </ScrollPane>
    </items>

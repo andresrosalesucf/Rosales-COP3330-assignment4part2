@@ -6,6 +6,7 @@ package ucf.assignments;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.*;
 
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +35,7 @@ public class ToDo {
         setDescription(description);
         setStatus(status);
     }
+
     public void setDueDate(String duedate){
         Boolean dateFormatCond = isValidFormat("yyyy-MM-dd", duedate);
         if(dateFormatCond){
@@ -42,9 +44,15 @@ public class ToDo {
             dueDate.set("YYYY-MM-DD");
         }
     }
+
     public void setDescription(String descript){ description.set(descript);}
+
     public void setStatus(String stat){
-        status.set(stat);
+        if(stat == "I" || stat == "i" || stat == "C" || stat == "c") {
+            status.set(stat.toUpperCase());
+        } else{
+            status.set("I");
+        }
     }
 
     public SimpleStringProperty dueDateProperty(){

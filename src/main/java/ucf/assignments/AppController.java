@@ -93,13 +93,18 @@ public class AppController implements Initializable {
         //init observable list from tableview
         ObservableList<ToDo> todos = tableView.getItems();
         //cut description field to 256 characters
-        String newDescription = descriptionTextField.getText().substring(0, 256);
+        String newDescription;
+        if(descriptionTextField.getText().length() > 256) {
+            newDescription = descriptionTextField.getText().substring(0, 256);
+        }else{
+            newDescription = descriptionTextField.getText();
+        }
         //check date entered is valid format
         ToDo addTodo = new ToDo(duedateTextField.getText(), newDescription);
         todos.add(addTodo);
     }
     @FXML
-    public void removeToDoButton(ActionEvent actionEvent){
+    public void removeToDoButton(javafx.event.ActionEvent actionEvent){
         removeToDo();
     }
 
@@ -107,6 +112,7 @@ public class AppController implements Initializable {
         //get name of list from currently opened titledpane in accordian
         //use remove(name) to remove a list from MasterList
         //update scene
+        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
     }
     public void clearListButton(javafx.event.ActionEvent actionEvent) {
         clearList();
@@ -123,6 +129,7 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<ToDo> todos = tableView.getItems();
 
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionColumn.setOnEditCommit(
@@ -136,6 +143,16 @@ public class AppController implements Initializable {
                 }
         );
         dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        /*textField.setOnAction(event -> {
+                    commitEdit(textField.getText());
+                    event.consume();
+                }
+                textField.setOnKeyPressed(event -> {
+                            if (event.getCode() == KeyCode.ESCAPE) {
+                                cancelEdit();
+                                event.consume();
+                            }
+                        }*/
         dueDateColumn.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<ToDo, String>>() {
                     @Override
@@ -157,6 +174,12 @@ public class AppController implements Initializable {
                     }
                 }
         );
+        duedateTextField.setText("2021-12-13");
+        descriptionTextField.setText("What what in the butt?");
+        for(int i=0; i<100; i++){
+
+            addToDo();
+        }
     }
 
 }
